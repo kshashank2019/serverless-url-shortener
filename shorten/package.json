@@ -1,0 +1,7 @@
+{
+  "name": "shorten",
+  "version": "1.0.0",
+  "description": "POST /shorten - creates a short code for a long URL",
+  "main": "app.mjs",
+  "type": "module"
+}
