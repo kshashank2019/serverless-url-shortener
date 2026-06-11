@@ -1,0 +1,7 @@
+{
+  "name": "redirect",
+  "version": "1.0.0",
+  "description": "GET /{shortCode} - 301 redirect to the original URL",
+  "main": "app.mjs",
+  "type": "module"
+}

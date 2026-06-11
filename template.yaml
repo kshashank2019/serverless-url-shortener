@@ -11,6 +11,26 @@ Globals:
     Timeout: 3
 
 Resources:
+  RedirectFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: redirect/
+      Handler: app.redirectHandler
+      Runtime: nodejs24.x
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref UrlsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref UrlsTable
+      Architectures:
+        - x86_64
+      Events:
+        RedirectUrl:
+          Type: Api
+          Properties:
+            Path: /{shortCode}
+            Method: get
   ShortenFunction:
     Type: AWS::Serverless::Function
     Properties:
