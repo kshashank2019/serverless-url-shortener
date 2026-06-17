@@ -1,5 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { generateShortCode } from "./shortcode.mjs";
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
@@ -10,7 +11,7 @@ export const shortenHandler = async (event, context) => {
     const url = requestData.url;
     let shortCode;
     while (true){
-        shortCode = Math.random().toString(36).substring(2, 8);
+        shortCode = generateShortCode();
         try{
             await docClient.send(new PutCommand({
                 TableName: process.env.TABLE_NAME,
